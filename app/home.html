@@ -1,0 +1,290 @@
+<div class="uk-animation-slide-left bg-white padding">
+    <div class="uk-container uk-container-center">
+
+        <div class="uk-grid">
+            <div class="uk-width-medium-1-2 uk-push-1-2">
+                <h2>ขั้นตอนการลงทะเบียนเรียน</h2>
+                <div class="step-indicator">
+                    <a class="step completed" href="#!/home/">1. จอง</a>
+                    <a class="step" href="#!/home/">2. จ่าย</a>
+                    <a class="step" href="#!/home/">3. แจ้ง</a>
+                </div>
+                <br style="clear:both">
+
+                <div class="step-container">
+                    <div id="step1">
+                        <form class="uk-form">
+                            <fieldset class="padding-bottom">
+                                <label>
+                                    <h3 class="font-1-5-em">ชื่อ-นามสกุล (ควรเป็นภาษาไทย)</h3>
+                                    <input type="text" required placeholder="Full Name" name="fullname" class="uk-width-1-1">
+                                </label>
+                            </fieldset>
+
+                            <fieldset class="padding-bottom">
+                                <label>
+                                    <h3 class="font-1-5-em">อีเมล</h3>
+                                    <input type="email" required placeholder="Email" name="email" class="uk-width-1-1">
+                                </label>
+                            </fieldset>
+
+                            <fieldset class="padding-bottom">
+                                <label>
+                                    <h3 class="font-1-5-em">เบอร์โทรศัพท์</h3>
+                                    <input type="text" required placeholder="Phone Number" name="phone" class="uk-width-1-1">
+                                </label>
+                            </fieldset>
+
+                            <fieldset class="padding-bottom">
+                                <label>
+                                    <h3 class="font-1-5-em">จำนวนที่นั่ง (คงเหลือ <span id="remains" data-remains="32">32</span> ที่นั่ง)</h3>
+                                    <input type="number" name="seats" required min=1 value=0 style="width:50px" placeholder="Number of Seat(s)" name="seats">
+                                    <small><span id="subtotal">0</span> บาท รวมภาษีมูลค่าเพิ่มแล้ว</small>
+                                    <small id="extras" style="display:none;"><br></small>
+                                </label>
+                            </fieldset>
+
+                            <hr>
+                            <fieldset class="uk-text-right">
+
+                                <button class="uk-button uk-button-primary">
+                                    จอง
+                                </button>
+
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div id="step2" style="display:none;">
+                        <div style="border-left: 5px solid green; padding-left: 15px;">
+                            <div class="uk-grid">
+                                <div class="uk-width-2-10">
+
+                                    <img src="app/images/kbank.png" alt="kbank">
+
+                                </div>
+
+                                <div class="uk-width-8-10">
+
+                                    ธนาคาร กสิกรไทย
+                                    <br> เลขที่ 881-2-10099-9
+                                    <br> บจก. ลินุกซ์ เซน
+                                    <br> สาขา ลาดพร้าว 101
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="no_rsvn_found uk-alert uk-alert-danger">
+                            คุณยังไม่ได้ทำการสำรองที่นั่ง กรุณากลับไปที่หน้าจอง <a href="" data-to-step="1" class="plain-link">คลิก</a>
+                        </div>
+
+                        <h3 class="font-2-6-em">ยอดที่ต้องชำระ</h3>
+
+                        <input id="is_need_tax_deduct" type="checkbox"> ต้องการหักภาษี ณ ที่จ่าย?
+                        <div id="deduct_warning" style="display:none">
+                            จำนวน % ที่หัก 
+                            <select id="deduct_percent">
+                                <option value=1>1%</option>
+                                <option value=3 selected>3%</option>
+                            </select>
+                            <div class="uk-alert">
+                                ท่านต้องเตรียมภาพเอกสารหักภาษี ณ ที่จ่าย แนบส่งเป็นหลักฐานการชำระเงินด้วย
+                                <br>
+                                โดยเอกสารฉบับจริงสามารถมามอบให้ภายหลังในวันงานได้
+                                <p> 
+                                    <strong>ข้อมูลนำหักภาษี:</strong><br>
+                                    บริษัท ลินุกซ์เซน จำกัด (สำนักงานใหญ่)<br>
+                                    20/172 หมู่บ้านกีรติธานี หมู่ที่ 6<br>
+                                    ตำบลบ้านสวน อำเภอเมือง จังหวัดชลบุรี 20000<br>
+                                    เลขประจำตัวผู้เสียภาษีอากร 0205554010766
+                                </p>
+                            </div>
+                        </div>
+
+                        <div id="paylist" class="margin-top"></div>
+
+
+                    </div>
+                    <div id="step3" style="display:none;">
+
+                        <div id="rsvn-statuses" style="display:none">
+                            <h2 class="font-2-em">สถานะการสำรองที่นั่งของคุณ</h2>
+                            <ul class="uk-list uk-list-line"></ul>
+                        </div>
+
+                        <form class="uk-form">
+                            <fieldset>
+                                <label class="margin-bottom">
+                                    <h3 class="font-1-5-em">เลือกใบจอง</h3>
+                                    <select id="pay-item" class="uk-width-1-1"></select>
+                                </label>
+                            </fieldset>
+                            <div class="no_rsvn_found uk-alert uk-alert-danger">
+                                ไม่พบใบจองที่ยังไม่ได้แจ้งชำระ กรุณากลับไปที่หน้าจอง <a href="" data-to-step="1" class="plain-link">คลิก</a>
+                            </div>
+
+                            <fieldset>
+                                <label class="margin-bottom">
+                                    <h3 class="font-1-5-em">หลักฐานการโอนเงิน</h3>
+                                    <input type="file" name="evidence" class="uk-width-1-1">
+                                </label>
+                            </fieldset>
+
+                            <fieldset>
+                                <label class="margin-bottom">
+
+                                    <input type="checkbox" name="require_tax_deduct"> มีการหักภาษี ณ ที่จ่าย?
+
+                                </label>
+                            </fieldset>
+
+                            <fieldset id="tax_deduct_document" style="display:none">
+                                <label class="margin-bottom">
+                                    <h3 class="font-1-5-em">ใบหักภาษี ณ ที่จ่าย</h3>
+                                    <input type="file" name="tax_deduct" class="uk-width-1-1">
+                                </label>
+                            </fieldset>
+
+                            <fieldset>
+                                <label class="margin-bottom">
+
+                                    <input type="checkbox" name="require_receipt"> ต้องการใบกำกับภาษี?
+
+                                </label>
+                            </fieldset>
+
+                            <fieldset id="receipt_info" style="display:none;">
+                                <label class="margin-bottom">
+                                    <h3 class="font-1-5-em">หมายเลขประจำตัวผู้เสียภาษี</h3>
+                                    <input type="text" name="bill_tax_id" placeholder="Tax ID Number" class="uk-width-1-1">
+                                </label>
+
+                                <label class="margin-bottom">
+                                    <h3 class="font-1-5-em">ออกบิลในนาม</h3>
+                                    <input type="text" name="bill_name" placeholder="Bill To" class="uk-width-1-1">
+                                </label>
+
+                                <label class="margin-bottom">
+                                    <h3 class="font-1-5-em">ที่อยู่</h3>
+                                    <textarea name="bill_addr" placeholder="Bill Address" class="uk-width-1-1"></textarea>
+                                </label>
+
+                            </fieldset>
+
+                            <h2 class="font-2-em">เลือกขนาดเสื้อ</h2>
+                            <fieldset id="shirts"></fieldset>
+
+                            <hr>
+
+                            <fieldset class="uk-text-right">
+                                <button class="uk-button uk-button-primary">แจ้งการชำระเงิน</button>
+                            </fieldset>
+
+                        </form>
+                    </div>
+
+                    <div class="overlay padding">
+                        <br>
+                        <br>
+                        <h3 class="uk-text-center font-2-em">
+                            กรุณาเชื่อมต่อกับ Facebook ก่อน
+                        </h3>
+                        <div class="uk-text-center padding">
+                            <button id="facebook-login" class="uk-button uk-button-primary font-1-5-em padding">
+                                <i class="uk-icon-facebook-official font-1-5-em"></i> Facebook Connect
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+            <div class="uk-width-medium-1-2 uk-pull-1-2">
+                <h2>
+                    
+                    แถมฟรี! เสื้อยืดงาน F1 สุดเท่<br>
+                    
+                    <small>* เลือกขนาดได้ในขั้นตอนการแจ้งชำระเงิน</small>
+                    
+                </h2>
+                <div class="padding-y">
+                    <a href="http://www.printaday.com/tshirt.php?tshirtid=2914" target="_blank">
+                        <img src="app/images/shirt.jpg" alt="เสื้องาน F1">
+                    </a>
+                </div>
+
+                <h3 class="font-3-em">13 กุมภาพันธ์ 2559 เวลา 9.00-17.00 น.<br><small>ณ ห้อง Auditorium ที่ The Connecion Educuisine</small></h3>
+                <table class="uk-table uk-table-striped uk-table-hover">
+                    <tbody>
+                        <tr>
+                            <td class="uk-text-right">9.00</td>
+                            <td>แนะนำ Docker</td>
+                        </tr>
+                        <tr>
+                            <td class="uk-text-right">9.30</td>
+                            <td>การติดตั้ง Docker ด้วย Docker Toolbox</td>
+                        </tr>
+                        <tr>
+                            <td class="uk-text-right">10.00</td>
+                            <td>การเขียน Dockerfile และการ build Docker Image</td>
+                        </tr>
+                        <tr>
+                            <td class="uk-text-right">11.00</td>
+                            <td>การลดขนาด Image ไฟล์</td>
+                        </tr>
+                        <tr>
+                            <td class="uk-text-right">11.30</td>
+                            <td>การวางระบบการ Build สำหรับ DevOps</td>
+                        </tr>
+                        <tr>
+                            <td class="uk-text-right">12.00</td>
+                            <td><i class="uk-icon-cutlery"></i> พักเที่ยง</td>
+                        </tr>
+                        <tr>
+                            <td class="uk-text-right">13.00</td>
+                            <td>ตัวอย่างการ dev PHP, Java, Ruby ด้วย Docker</td>
+                        </tr>
+                        <tr>
+                            <td class="uk-text-right">14.00</td>
+                            <td>การสร้าง Cluster ด้วย Docker Swarm</td>
+                        </tr>
+                        <tr>
+                            <td class="uk-text-right">15.00</td>
+                            <td>การเตรียม Docker Networking</td>
+                        </tr>
+                        <tr>
+                            <td class="uk-text-right">16.00</td>
+                            <td>การโยง Container ด้วย Docker Compose บน Docker Network</td>
+                        </tr>
+                        <tr>
+                            <td class="uk-text-right">17.00</td>
+                            <td>ปิดงาน</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<section id="location" class="uk-text-center">
+    <h2 class="font-3-em">The Connecion Educuisine สี่แยกรัชดา-ลาดพร้าว</h2>
+    <p>เดินทางสะดวก ติดกับสถานี MRT ลาดพร้าว มีที่จอดรถ</p>
+    <small>
+            <a target="_blank" href="http://www.okseminar.com/index.php?lay=show&ac=article&Id=539735588">วิธีเดินทางมาอย่างละเอียด</a>
+        </small>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sth!2sth!4v1445585403230!6m8!1m7!1sghu8uJRcqEjXpWSw8mjCTw!2m2!1d13.80591752975607!2d100.5748610961537!3f317.17917533202296!4f5.225366017534526!5f0.7820865974627469" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+</section>
+
+
+<script type="text/javascript" src="app/js/home.js"></script>

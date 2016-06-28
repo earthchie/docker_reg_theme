@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name="fragment" content="!">
+    <meta charset="UTF-8" />
+
+    <title>สร้างคลาวด์ด้วย Docker 1.9</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta property="og:title" content='สร้างคลาวด์ด้วย Docker 1.9' />
+    <meta property="og:description" content="เรียนวิธีใช้ Docker 1.9 สร้างคลาวด์ด้วย Docker Swarm ปูพื้นฐาน Docker เทคนิคการ Provision Cluster ด้วย Swarm สร้าง Network เชื่อมระหว่าง Container (ด้วย Network Virtualization) โดย อ. ชาญวิทย์ แก้วกสิ Docker Swam Maintainer" />
+    <meta property="og:image" content="https://apifw.net/domeclass/app/images/og.png" />
+    <meta property="fb:app_id" content="639278636213670" />
+    
+    <meta name="author" content="DomeClass by DomeCloud" />
+    <meta name="description" content="สร้างคลาวด์ด้วย Docker 1.9" />
+    <meta name="keywords" content="เรียนวิธีใช้ Docker 1.9 สร้างคลาวด์ด้วย Docker Swarm ปูพื้นฐาน Docker เทคนิคการ Provision Cluster ด้วย Swarm สร้าง Network เชื่อมระหว่าง Container (ด้วย Network Virtualization) โดย อ. ชาญวิทย์ แก้วกสิ Docker Swam Maintainer" />
+    <meta name="designer" content="Earthchie <https://fb.me/earthchie/>" />
+
+    <!--link rel="shortcut icon" type="image/x-icon" href="app/images/favicon.ico"-->
+
+    <!-- stylesheets -->
+
+    <link rel="stylesheet" type="text/css" href="lib/uikit/css/uikit.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/uikit/css/components/notify.almost-flat.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/uikit/css/components/tooltip.almost-flat.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/swiper/dist/css/swiper.min.css">
+
+    <link rel="stylesheet" type="text/css" href="app/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="app/css/styles.css">
+
+    <!--[if IE]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=639278636213670";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <header class="padding">
+
+        <div class="uk-container uk-container-center">
+            <div class="uk-grid">
+                <div class="uk-width-medium-2-3 mobile-text-center">
+                    <div class="logo"></div>
+                    <h1>สร้างคลาวด์ด้วย Docker 1.9</h1>
+                </div>
+                <div class="uk-width-medium-1-3">
+                    <div class="padding-x uk-text-right font-0-8-em mobile-text-center">
+                        DomeClass by DomeCloud Co., Ltd.
+                        <br> สอบถามรายละเอียด: 096 414 7446 (คุณพงศกร)
+                    </div>
+                </div>
+            </div>
+            
+            <div class="uk-visible-small padding-y uk-text-center">
+                
+                <article>
+                    <h2>
+                        เรียนวิธีใช้ Docker 1.9
+                        <br>
+                        สร้างคลาวด์ด้วย Docker Swarm
+                    </h2>
+                    <ul class="uk-list">
+                        <li>ปูพื้นฐาน Docker</li>
+                        <li>เทคนิคการ Provision Cluster ด้วย Swarm</li>
+                        <li>สร้าง Network เชื่อมระหว่าง Container
+                            <br>(ด้วย Network Virtualization)</li>
+                    </ul>
+                    <br>
+                    <img src="app/images/slide1.png" style="width:150px" alt="">
+                    <br>
+                    <br>
+                    โดย อ. ชาญวิทย์ แก้วกสิ
+                    <br>
+                    Docker Swam Maintainer
+                    <br>
+                    
+                </article>
+                
+            </div>
+        </div>
+
+    </header>
+
+    <section id="slider" class="uk-hidden-small">
+        <div id="docker_logo"></div>
+        <div class="uk-container uk-container-center">
+
+            <div class="swiper-container uk-animation-scale-up">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+
+                        <div class="uk-grid">
+
+                            <div class="uk-width-4-10">
+
+                                <article>
+                                    <h2>
+                                        เรียนวิธีใช้ Docker 1.9
+                                        <br>
+                                        สร้างคลาวด์ด้วย Docker Swarm
+                                    </h2>
+                                    <ul>
+                                        <li>ปูพื้นฐาน Docker</li>
+                                        <li>เทคนิคการ Provision Cluster ด้วย Swarm</li>
+                                        <li>สร้าง Network เชื่อมระหว่าง Container
+                                            <br>(ด้วย Network Virtualization)</li>
+                                    </ul>
+                                </article>
+
+                            </div>
+
+                            <div class="uk-width-6-10 uk-text-center">
+                                <caption>
+                                    <h3 style="position:absolute;bottom:60px;left:32%;font-size:2em;">
+                                        อ. ชาญวิทย์ แก้วกสิ
+                                        <br>
+                                        Docker Swam Maintainer
+                                        <br>
+                                        <small>(ผู้บรรยาย)</small>
+                                    </h3>
+                                </caption>
+                                <figure>
+                                    <img src="app/images/slide1.png" alt="">
+                                </figure>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="swiper-slide">
+
+                        <div class="uk-grid">
+
+                            <div class="uk-width-4-10">
+
+                                <article>
+                                    <h2>
+                                        เรียนวิธีใช้ Docker 1.9
+                                        <br>
+                                        สร้างคลาวด์ด้วย Docker Swarm
+                                    </h2>
+                                    <ul>
+                                        <li>ปูพื้นฐาน Docker</li>
+                                        <li>เทคนิคการ Provision Cluster ด้วย Swarm</li>
+                                        <li>สร้าง Network เชื่อมระหว่าง Container
+                                            <br>(ด้วย Network Virtualization)</li>
+                                    </ul>
+                                </article>
+
+                            </div>
+
+                            <div class="uk-width-6-10 uk-text-center">
+                                <caption>
+                                    <h3 style="position:absolute;bottom:60px;left:40%;font-size:2em;">
+                                        โดม เจริญยศ
+                                        <br>
+                                        <small>(ผู้จัดงาน)</small>
+                                    </h3>
+                                </caption>
+                                <figure>
+                                    <img src="app/images/slide2.png" alt="">
+                                </figure>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <main id="velveto"></main>
+
+    <footer>
+
+    </footer>
+
+    <!-- javascript -->
+
+    <!-- framework -->
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/uikit/js/uikit.min.js"></script>
+    <script type="text/javascript" src="lib/uikit/js/components/notify.min.js"></script>
+    <script type="text/javascript" src="lib/uikit/js/components/tooltip.min.js"></script>
+    <script type="text/javascript" src="lib/swiper/dist/js/swiper.min.js"></script>
+    
+
+    <script type="text/javascript" src="lib/velveto.min.js"></script>
+
+    <!-- page script -->
+    <script type="text/javascript" src="app/js/app.js"></script>
+    <script type="text/javascript" src="app/js/hook/loaded.js"></script>
+
+</body>
+
+</html>
